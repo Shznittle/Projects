@@ -1,0 +1,346 @@
+//Tic, Tac, Toe
+//By Ryan Lucero
+
+#include <iostream>
+//#include <iomanip>      // std::setw
+ 
+using namespace std;
+
+void DisplayBoard(char a[], char b[], char c[]);
+
+char UserMove(bool player1Turn, bool playerChoice, string playerName[], int userChoice, char a[], char b[], char c[]);
+
+int main()
+{
+  bool player1Turn = true;
+  bool playerChoice = false;
+  bool gameOver = false;
+  string playerName[2];
+  int userChoice;
+  char a[3] = {'_', '_', '_'}, b[3] = {'_', '_', '_'}, c[3] = {'_', '_', '_'};
+  //char a[3], b[3], c[3];
+  
+  cout << "Player 1, enter your name: ";
+  cin >> playerName[0];
+  cout << "\nPlayer 2, enter your name: ";
+  cin >> playerName[1];
+
+  DisplayBoard(a, b, c);
+  
+  do
+  {
+    UserMove(player1Turn, playerChoice, playerName, userChoice, a, b, c);
+
+    DisplayBoard(a, b, c);
+
+    if((a[0]=='X' && a[1]=='X' && a[2]=='X') || (b[0]=='X' && b[1]=='X' && b[2]=='X') || (c[0]=='X' && c[1]=='X' && c[2]=='X') || (a[0]=='X' && b[0]=='X' && c[0]=='X') || (a[1]=='X' && b[1]=='X' && c[1]=='X') || (a[2]=='X' && b[2]=='X' && c[2]=='X') || (a[0]=='X' && b[1]=='X' && c[2]=='X') || (a[2]=='X' && b[1]=='X' && c[0]=='X') || (a[0]=='O' && a[1]=='O' && a[2]=='O') || (b[0]=='O' && b[1]=='O' && b[2]=='O') || (c[0]=='O' && c[1]=='O' && c[2]=='O') || (a[0]=='O' && b[0]=='O' && c[0]=='O') || (a[1]=='O' && b[1]=='O' && c[1]=='O') || (a[2]=='O' && b[2]=='O' && c[2]=='O') || (a[0]=='O' && b[1]=='O' && c[2]=='O') || (a[2]=='O' && b[1]=='O' && c[0]=='O'))
+    {
+      gameOver = true;
+
+      if(player1Turn == true)
+      {
+        cout << "\n\n--Game Over--\n" << playerName[0] << " WINS!";
+      }
+      else
+      {
+        cout << "\n\n--Game Over--\n" << playerName[1] << " WINS!";
+      }
+    }
+    else if((a[0] == 'X' || a[0] == 'O') && (a[1] == 'X' || a[1] == 'O') && (a[2] == 'X' || a[2] == 'O') && (b[0] == 'X' || b[0] == 'O') && (b[1] == 'X' || b[1] == 'O') && (b[2] == 'X' || b[2] == 'O') && (c[0] == 'X' || c[0] == 'O') && (c[1] == 'X' || c[1] == 'O') && (c[2] == 'X' || c[2] == 'O'))
+    {
+      gameOver = true;
+
+      cout << "\n\n--Game Over--\nDraw!";
+    }
+
+    if(player1Turn == true)
+    {
+      player1Turn = false;
+    }
+    else
+    {
+      player1Turn = true;
+    }
+  }
+  while(gameOver == false);
+
+  return 0;
+}
+
+void DisplayBoard(char a[], char b[], char c[])
+{
+  cout << "\n    1 2 3 \n" << "   -------\n a |" << a[0] << "|" << a[1] << "|" << a[2] << "|\n   -------\n b |" << b[0] << "|" << b[1] << "|" << b[2] << "|\n   -------\n c |" << c[0] << "|" << c[1] << "|" << c[2] << "|\n   -------";
+}
+
+char UserMove(bool player1Turn, bool playerChoice, string playerName[], int userChoice, char a[], char b[], char c[])
+{
+  playerChoice = false;
+
+  if(player1Turn == true)
+  {
+    cout << "\n\nIt is " << playerName[0] << "'s turn." << endl;
+    
+    do
+    {
+      cout << "\n1: a1\n2: a2\n3: a3\n4: b1\n5: b2\n6: b3\n7: c1\n8: c2\n9: c3\n\nChoose a square where you would like to place your 'X' (1-9): ";
+
+      cin >> userChoice;
+    
+      switch(userChoice)
+      {
+        case 1:
+          if(a[0] == '_')
+          {
+            a[0] = 'X';
+            playerChoice = true;
+            return a[0];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          }  
+        case 2:
+          if(a[1] == '_')
+          {
+            a[1] = 'X';
+            playerChoice = true;
+            return a[1];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 3:
+          if(a[2] == '_')
+          {
+            a[2] = 'X';
+            playerChoice = true;
+            return a[2];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 4:
+          if(b[0] == '_')
+          {
+            b[0] = 'X';
+            playerChoice = true;
+            return b[0];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 5:
+          if(b[1] == '_')
+          {
+            b[1] = 'X';
+            playerChoice = true;
+            return b[1];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 6:
+          if(b[2] == '_')
+          {
+            b[2] = 'X';
+            playerChoice = true;
+            return b[2];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 7:
+          if(c[0] == '_')
+          {
+            c[0] = 'X';
+            playerChoice = true;
+            return c[0];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 8:
+          if(c[1] == '_')
+          {
+            c[1] = 'X';
+            playerChoice = true;
+            return c[1];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 9:
+          if(c[2] == '_')
+          {
+            c[2] = 'X';
+            playerChoice = true;
+            return c[2];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          }     
+      }
+    }
+    while(playerChoice == false);
+  }  
+  else
+  {
+    cout << "\n\nIt is " << playerName[1] << "'s turn." << endl;
+    
+    do
+    {
+      cout << "\n1: a1\n2: a2\n3: a3\n4: b1\n5: b2\n6: b3\n7: c1\n8: c2\n9: c3\n\nChoose a square where you would like to place your 'O' (1-9): ";
+
+      cin >> userChoice;
+      
+      switch(userChoice)
+      {
+        case 1:
+          if(a[0] == '_')
+          {
+            a[0] = 'O';
+            playerChoice = true;
+            return a[0];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          }  
+        case 2:
+          if(a[1] == '_')
+          {
+            a[1] = 'O';
+            playerChoice = true;
+            return a[1];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 3:
+          if(a[2] == '_')
+          {
+            a[2] = 'O';
+            playerChoice = true;
+            return a[2];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 4:
+          if(b[0] == '_')
+          {
+            b[0] = 'O';
+            playerChoice = true;
+            return b[0];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 5:
+          if(b[1] == '_')
+          {
+            b[1] = 'O';
+            playerChoice = true;
+            return b[1];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 6:
+          if(b[2] == '_')
+          {
+            b[2] = 'O';
+            playerChoice = true;
+            return b[2];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 7:
+          if(c[0] == '_')
+          {
+            c[0] = 'O';
+            playerChoice = true;
+            return c[0];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 8:
+          if(c[1] == '_')
+          {
+            c[1] = 'O';
+            playerChoice = true;
+            return c[1];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          } 
+        case 9:
+          if(c[2] == '_')
+          {
+            c[2] = 'O';
+            playerChoice = true;
+            return c[2];
+            break;
+          }
+          else
+          {
+            cout << "\n\nERROR: That square has already been used. Please choose again." << endl;
+            break;
+          }     
+      }
+    }
+    while(playerChoice == false);
+  }
+  return a[3];
+}
