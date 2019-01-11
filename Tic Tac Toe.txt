@@ -342,5 +342,5 @@ char UserMove(bool player1Turn, bool playerChoice, string playerName[], int user
     }
     while(playerChoice == false);
   }
-  return a[3];
+  //return a[3];
 }
